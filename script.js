@@ -1,6 +1,9 @@
 let data = []
 let numCarte
 
+let listaOggetti = []
+let htmlGrid
+
 window.onload = function() {
     requestNumCarte()
     creazioneGrid()
@@ -17,32 +20,42 @@ class Card {
     }
 
     generazione() {
-        return `
-        <div class="card">
-            <div>
-                <h1>${this.name}</h1>
-                <p>${this.manaCost}</p>
-            </div>
-            
-            <img scr="${this.image}">
-            <p class="text">${this.text}</p>
-            <div class="stats">
-                <p>${this.power}</p>
-                <p>${this.toughness}</p>
-            </div>
-        </div>
-        `
+        let str = `<div class="card">
+                        <div>
+                            <h1>${this.name}</h1>
+                            <p>${this.manaCost}</p>
+                        </div>
+                        
+                        <img scr="${this.image}" class="imageCard">
+                        <p class="text">${this.text}</p>
+                        <div class="stats">
+                            <p>${this.power}</p>
+                            <p>${this.toughness}</p>
+                        </div>
+                    </div>
+                    `
+        return str
     }
 }
 
 function creazioneGrid() {
     //cercare carte nel set
     //let array = request("https://api.scryfall.com/sets/emn")
-    console.log(numCarte) 
-    /*for (let i = 0; i < array.; i++) {
-        const element = array[i];
+    for (let i = 1; i < numCarte; i++) {
+        console.log("dio")
+        requestCarte(i)
         
-    }*/
+    }
+    
+}
+
+
+function creazioneOggCarta(info) {
+    let ogg = new Card(info.name, info.image_uris["art_crop"],info.mana_cost, info.power, info.toughness, info.oracle_text);
+    listaOggetti.push(ogg)
+
+    document.querySelector("main").innerHTML += ogg.generazione()
+
 }
 
 //set: https://api.scryfall.com/cards/emn/
@@ -57,7 +70,7 @@ function requestCarte(num) {
   
       if(xhr.status==200 && xhr.readyState==4) {
         let txt = JSON.parse(xhr.responseText)
-        data.push(txt)
+        creazioneOggCarta(txt)
       }
   
     };
@@ -78,7 +91,8 @@ function requestNumCarte() {
   
     if (xhr.status==200 && xhr.readyState==4) {
         let txt = JSON.parse(xhr.responseText)
-        numCarte = txt.card_count
+            numCarte = txt.card_count
+            creazioneGrid()
         }
   
     };
