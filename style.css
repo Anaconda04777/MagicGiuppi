@@ -1,3 +1,8 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 body {
     background-color: #CAB6CD;
 }
@@ -8,24 +13,65 @@ main {
     justify-content: center;
 }
 
+.hide {
+    display: none !important;
+}
+
+.centrator {   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;   
+}
+/*header e input*/
+
+header {
+    background-color: #252422;
+    min-height: 100px;
+}
+
+header h1 {
+    font-size: 3em;
+    color: aliceblue;
+}
+
+.searchBar {
+    flex-direction: row;
+    margin: 1rem 0 0 0;
+}
+
+.searchBar input { 
+    border: 2px solid #252422;
+    padding: 0.2rem;
+}
+
+.searchBar p {
+    margin: 0.2rem;
+}
+
+/*--------------*/
+
 .card {
     display: flex;
     flex-direction: column;
 
-    width: 400px;
-    height: 600px;
+    width: 520px;
+    height: 760px;
 
-    padding: 1rem;
+    padding: 20px;
     margin: 30px;
     align-items: center;
     justify-content: space-between;
+
+    border: 10px solid #000000;
 
     background: rgba( 166, 166, 166, 0.75 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 6.5px );
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    
 }
+
 .imageCard {
     max-width: 100%;
 }
@@ -35,20 +81,51 @@ main {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-
     align-self: flex-start;
+    padding: 0.5rem;
+}
+
+.headerCard p {
+    font-size: 1.1rem;
 }
 
 .headerCard h1 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+}
+
+.text {
+    padding: 0.5rem;
+    font-size: 2vmin;
 }
 
 .stats {
+    padding: 0.2rem 0.5rem;
     display: flex;
     align-self: flex-end;
-    font-size: 1.3rem;
+    height: min-content;
 }
 
+.stats p {
+    max-height: fit-content;
+}
+
+.mainCard {
+    height: 30%;
+    width: 100%;
+}
+
+.mainCard h3 {
+    padding: 5px;
+}
+
+
+.border {
+    border: 7px double #000000;
+}
+
+.border-radius {
+    border-radius: 10px;
+}
 
 
 .R {
@@ -72,6 +149,5 @@ main {
 }
 
 .Gold {
-    background: rgba( 255, 242, 0, 0.75 );
+    background: rgba(196, 187, 11, 0.75);
 }
- 

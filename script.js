@@ -4,9 +4,14 @@ let numCarte
 let listaOggetti = []
 let htmlGrid
 
+let inputSearch
+
 window.onload = function() {
     requestNumCarte()
     creazioneGrid()
+
+    inputSearch = document.querySelector("#searchInput")
+    inputSearch.addEventListener("keydown", filtro)
 }
 
 class Card {
@@ -31,20 +36,20 @@ class Card {
 
     }
 
-    generazione() {
-        let str = `<div class="card ${this.color}">
-                        <div class="headerCard">
+    generazione() { // }
+        let str = `<div class="card ${this.color}" id=${this.name.toLowerCase().replaceAll(" ", "")}>
+                        <div class="headerCard border border-radius">
                             <h1>${this.name}</h1>
                             <p>${this.manaCost}</p>
                         </div>
-                        <img src="${this.image}" class="imageCard" load="lazy">
+                        <img src="${this.image}" class="imageCard border" load="lazy">
                         <div class="mainCard">
                             
-                            <h3>${this.typeLine}</h3>
-                            <p class="text">${this.text}</p>
+                            <h3 class="border border-radius">${this.typeLine}</h3>
+                            <p class="text border border-radius">${this.text}</p>
                         </div>
 
-                        <div class="stats">
+                        <div class="stats  ${this.power != "" ? "border border-radius" : ""}">
                             <p>${this.power} </p>
                             <p> ${this.toughness}</p>
                         </div>
@@ -64,6 +69,36 @@ function creazioneGrid() {
     
 }
 
+function filtro() {
+    console.log("dio")
+    let txt = searchInput.value.toLowerCase()
+    let child = document.querySelector("main").children
+
+    listaOggetti = listaOggetti.filter(ogg => ogg.name.toLowerCase().includes(txt))
+    Array.from(child).forEach(i => i.classList.remove("hide"))
+
+    Array.from(child).forEach(i => {
+        if (!i.id.includes(txt)) {
+            //console.log(i.id)
+            i.classList.add("hide")
+        }
+    })
+
+
+
+   
+
+
+    /*child.map(i => {
+        console.log(document.querySelector(`#${i.id} .headerCard h1`).innerHTML.toLowerCase())
+    })*/
+        
+        //if ()
+    
+    
+    
+
+}
 
 function creazioneOggCarta(info) {
     let ogg = new Card(info.name, info.image_uris["art_crop"],info.mana_cost, info.power, info.toughness, 
