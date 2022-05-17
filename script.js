@@ -1,10 +1,15 @@
 let data = []
+let colorsIcon = {
+    "R":"https://w7.pngwing.com/pngs/792/394/png-transparent-magic-the-gathering-mana-magic-points-playing-card-game-love-symbol-miscellaneous-game-color.png"
+}
 let numCarte
 
 let listaOggetti = []
 let htmlGrid
 
 let inputSearch
+
+
 
 window.onload = function() {
     requestNumCarte()
@@ -64,40 +69,24 @@ function creazioneGrid() {
     //let array = request("https://api.scryfall.com/sets/emn")
     for (let i = 1; i < numCarte; i++) {
         requestCarte(i)
-        
     }
     
 }
 
 function filtro() {
-    console.log("dio")
     let txt = searchInput.value.toLowerCase()
-    let child = document.querySelector("main").children
+    let child = document.querySelectorAll("main>*")
 
-    listaOggetti = listaOggetti.filter(ogg => ogg.name.toLowerCase().includes(txt))
-    Array.from(child).forEach(i => i.classList.remove("hide"))
+    //listaOggetti = listaOggetti.filter(ogg => ogg.name.toLowerCase().includes(txt))
+    //Array.from(child).forEach(i => )
 
     Array.from(child).forEach(i => {
-        if (!i.id.includes(txt)) {
+        i.classList.add("hide")
+        if (i.id.includes(txt)) {
             //console.log(i.id)
-            i.classList.add("hide")
+            i.classList.remove("hide")
         }
     })
-
-
-
-   
-
-
-    /*child.map(i => {
-        console.log(document.querySelector(`#${i.id} .headerCard h1`).innerHTML.toLowerCase())
-    })*/
-        
-        //if ()
-    
-    
-    
-
 }
 
 function creazioneOggCarta(info) {
