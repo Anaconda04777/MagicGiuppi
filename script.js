@@ -75,12 +75,12 @@ function creazioneGrid() {
 
 function filtro() {
     let txt = searchInput.value.toLowerCase()
-    let child = document.querySelectorAll("main>*")
+    let child = document.querySelectorAll("main>*");
 
     //listaOggetti = listaOggetti.filter(ogg => ogg.name.toLowerCase().includes(txt))
     //Array.from(child).forEach(i => )
 
-    Array.from(child).forEach(i => {
+    [...child].forEach(i => {
         i.classList.add("hide")
         if (i.id.includes(txt)) {
             //console.log(i.id)
@@ -90,7 +90,7 @@ function filtro() {
 }
 
 function creazioneOggCarta(info) {
-    let ogg = new Card(info.name, info.image_uris["art_crop"],info.mana_cost, info.power, info.toughness, 
+    let ogg = new Card(info.name, info.image_uris["art_crop"], info.mana_cost, info.power, info.toughness, 
                         info.oracle_text, info.colors, info.type_line);
     listaOggetti.push(ogg)
 
@@ -102,7 +102,6 @@ function creazioneOggCarta(info) {
 //num card: https://api.scryfall.com/sets/emn
 
 function requestCarte(num) {
-    let arr
     let xhr= new XMLHttpRequest();
   
     xhr.responseType='';
